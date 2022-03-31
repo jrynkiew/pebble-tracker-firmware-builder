@@ -1,8 +1,12 @@
 #!/bin/bash
 
-RUN pip3 install -r zephyr/scripts/requirements.txt && \
-    pip3 install -r nrf/scripts/requirements.txt && \
-    pip3 install -r bootloader/mcuboot/scripts/requirements.txt
+cp -r /app/pebble-firmware/nrf/applications/Aries/ /app/pebble-firmware-legacy/nrf/applications/
+west build -b thingy91_nrf9160ns /app/pebble-firmware-legacy/nrf/applications/Aries/
 
-cd /app/pebble-firmware/ncs
-west build -b thingy91_nrf9160ns /app/pebble-firmware-legacy/nrf/applications/asset_tracker/
+
+# RUN pip3 install -r zephyr/scripts/requirements.txt && \
+#     pip3 install -r nrf/scripts/requirements.txt && \
+#     pip3 install -r bootloader/mcuboot/scripts/requirements.txt
+
+# cd /app/pebble-firmware/ncs
+# west build -b thingy91_nrf9160ns /app/pebble-firmware-legacy/nrf/applications/asset_tracker/

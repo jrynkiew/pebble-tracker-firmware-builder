@@ -18,10 +18,11 @@ services:
       # - SOC_FAMILY_NRF=y
     volumes:
       - "/home/jeremi/Desktop/pebble-tracker-firmware/external/:/app/"
+      - "/home/jeremi/Desktop/pebble-tracker-firmware/build/install.sh:/install.sh"
     #   - "/home/jeremi/Code/jrpc_beta/external/pebble-firmware/tools/Kconfig:/app/pebble-firmware-legacy/nrf/applications/asset_tracker/Kconfig"
     #   - "$JRPC/log/IoTeX_Mainnet_Log:/var/log"
     #   - "$JRPC/etc/IoTeX_Mainnet_Etc/config.yaml:/etc/iotex/config_override.yaml"
     #   - "$JRPC/etc/IoTeX_Mainnet_Etc/genesis.yaml:/etc/iotex/genesis.yaml"
-    command: sleep infinity #$BUILD $FIRMWARE_PATH
+    command: /install.sh #sleep infinity #$BUILD $FIRMWARE_PATH
     #west build -b thingy91_nrf9160ns /app/pebble-firmware-legacy/nrf/applications/asset_tracker/
     #sleep infinity #
