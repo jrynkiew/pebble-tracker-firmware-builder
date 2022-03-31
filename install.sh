@@ -1,4 +1,4 @@
-
+#!/bin/bash
 # # Environment variables
 red=`tput setaf 1`
 # purple=`tput setaf 93`
@@ -7,23 +7,28 @@ green=`tput setaf 2`
 gold=`tput setaf 214`
 reset=`tput sgr0`
 
-. ./build/setenv.sh
-
+. ./build/setenv.sh "applications/Aries/"
+echo $JRPC_PebbleFirmware
 git submodule update --init --recursive
 
-read -p "Which ${green}IoTeX${reset} ${gold}Pebble Tracker Firmware${reset} do you want to build? \n
+rm -rf ./external/pebble-firmware/ncs/nrf/boards/arm/thingy91_nrf9160 && \
+cp -rv /app/pebble-firmware-legacy/nrf/boards/arm/thingy91_nrf9160 /app/pebble-firmware/ncs/nrf/boards/arm/
+
+read -p "Which ${green}IoTeX${reset} ${gold}Pebble Tracker Firmware${reset} do you want to build?
         (${red}1${reset}): Aries
         (${red}2${reset}): Asset Tracker
         " FIRMWARE_SELECTION_CONFIG
 
 FIRMWARE_SELECTION=$(case "$FIRMWARE_SELECTION_CONFIG" in
-  (1)    echo "aries"           ;;
-  (2)    echo "asset_tracker"   ;;
+  (1)    
+    echo "aries"           ;;
+  (2)    
+    echo "asset_tracker"   ;;
 esac)
 
 case $FIRMWARE_SELECTION in
   aries)
-    FIRMWARE_PATH="/app/pebble-firmware-legacy/nrf/applications/Aries/" ;;
+    FIRMWARE_PATH="/app/pebble-firmware/nrf/applications/Aries/" ;;
 
   asset_tracker)
     FIRMWARE_PATH="/app/pebble-firmware-legacy/nrf/applications/asset_tracker/" ;;
