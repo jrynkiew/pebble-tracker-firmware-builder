@@ -8,7 +8,7 @@ gold=`tput setaf 214`
 reset=`tput sgr0`
 
 . ./build/setenv.sh "applications/Aries/"
-echo $JRPC_PebbleFirmware
+
 git submodule update --init --recursive
 
 rm -rf ./external/pebble-firmware/ncs/nrf/boards/arm/thingy91_nrf9160 && \

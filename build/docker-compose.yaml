@@ -21,9 +21,9 @@ services:
       - CONFIG_CC310_BACKEND=y
       - SOC_FAMILY_NRF=y
     volumes:
-      - "/home/jeremi/Desktop/pebble-tracker-firmware/external/:/app/"
-      - "/home/jeremi/Desktop/pebble-tracker-firmware/build/install.sh:/install.sh"
-      - "/home/jeremi/Desktop/pebble-tracker-firmware/build/Kconfig:/west/nrfxlib/nrf_security/Kconfig"
+      - "$JRPC_PebbleFirmware/external/:/app/"
+      - "$JRPC_PebbleFirmware/build/install.sh:/install.sh"
+      - "$JRPC_PebbleFirmware/build/Kconfig:/west/nrfxlib/nrf_security/Kconfig"
     command: /install.sh #$BUILD $FIRMWARE_PATH
     #west build -b thingy91_nrf9160ns /app/pebble-firmware-legacy/nrf/applications/asset_tracker/
     #sleep infinity #
