@@ -21,7 +21,7 @@ RUN wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.14.0/
 #    rm /zephyr/zephyr-sdk-0.14.0_linux-aarch64.tar.gz
 
 RUN python3 -m pip install --upgrade pip setuptools tk wheel && \
-    pip3 install west intelhex pyelftools click
+    pip3 install west intelhex pyelftools click cryptography cbor
 
 RUN source ~/.bashrc
 

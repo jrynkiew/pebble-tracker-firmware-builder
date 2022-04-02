@@ -8,21 +8,22 @@ services:
        context: .
        dockerfile: Dockerfile
     environment:
-      #- JRPC_FIRMWARE_BUILDKIT=$JRPC_FIRMWARE_BUILDKIT
-      #- LC_ALL=C.UTF-8
-      #- LANG=C.UTF-8
-      #- ZEPHYR_SDK_INSTALL_DIR=/zephyr/zephyr-sdk-0.14.0
+      - LC_ALL=C.UTF-8
+      - LANG=C.UTF-8
+      - CONFIG_DOWNLOAD_CLIENT_BUF_SIZE=2048
+      - CONFIG_DOWNLOAD_CLIENT_STACK_SIZE=1024
+      - MODEM_KEY_MGMT_CRED_TYPE_CA_CHAIN=0
+      - MODEM_KEY_MGMT_CRED_TYPE_PRIVATE_CERT=0
+      - FOTA_DOWNLOAD=n
+      - MODEM_KEY_MGMT_CRED_TYPE_PUBLIC_CERT=0
       - ZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb
       - GNUARMEMB_TOOLCHAIN_PATH=/gnuarmemb
-      # - CONFIG_CC310_BACKEND=true
-      # - SOC_FAMILY_NRF=y
+      - CONFIG_CC310_BACKEND=y
+      - SOC_FAMILY_NRF=y
     volumes:
       - "/home/jeremi/Desktop/pebble-tracker-firmware/external/:/app/"
       - "/home/jeremi/Desktop/pebble-tracker-firmware/build/install.sh:/install.sh"
-    #   - "/home/jeremi/Code/jrpc_beta/external/pebble-firmware/tools/Kconfig:/app/pebble-firmware-legacy/nrf/applications/asset_tracker/Kconfig"
-    #   - "$JRPC/log/IoTeX_Mainnet_Log:/var/log"
-    #   - "$JRPC/etc/IoTeX_Mainnet_Etc/config.yaml:/etc/iotex/config_override.yaml"
-    #   - "$JRPC/etc/IoTeX_Mainnet_Etc/genesis.yaml:/etc/iotex/genesis.yaml"
-    command: /install.sh #sleep infinity #$BUILD $FIRMWARE_PATH
+      - "/home/jeremi/Desktop/pebble-tracker-firmware/build/Kconfig:/west/nrfxlib/nrf_security/Kconfig"
+    command: /install.sh #$BUILD $FIRMWARE_PATH
     #west build -b thingy91_nrf9160ns /app/pebble-firmware-legacy/nrf/applications/asset_tracker/
     #sleep infinity #
