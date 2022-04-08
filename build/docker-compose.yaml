@@ -22,8 +22,8 @@ services:
       - SOC_FAMILY_NRF=y
     volumes:
       - "$JRPC_PebbleFirmware/external/:/app/"
-      - "$JRPC_PebbleFirmware/build/install.sh:/install.sh"
+      #- "$JRPC_PebbleFirmware/build/install.sh:/install.sh"
       - "$JRPC_PebbleFirmware/build/Kconfig:/west/nrfxlib/nrf_security/Kconfig"
-    command: /install.sh #$BUILD $FIRMWARE_PATH
+    command: $BUILD $FIRMWARE_PATH
     #west build -b thingy91_nrf9160ns /app/pebble-firmware-legacy/nrf/applications/asset_tracker/
     #sleep infinity #
