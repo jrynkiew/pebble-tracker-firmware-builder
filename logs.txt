@@ -1,0 +1,1831 @@
+jeremi@jeremi-ThinkPad-X260:~/jrpc_beta/external/pebble-tracker-firmware$ ./install.sh 
+/home/jeremi/jrpc_beta/external/pebble-tracker-firmware
+Which IoTeX Pebble Tracker Firmware do you want to build? \n
+        (1): Gravel
+        (2): Asset Tracker
+        (3): Aries
+        3
+This script will attempt to install west build -b thingy91_nrf9160ns /app/pebble-firmware/nrf/applications/Aries/ 
+Do you want to perform a first-time installation (F) or run the application (R)?: f
+Building pebble-firmware
+Step 1/14 : FROM ubuntu:bionic
+ ---> b67d6ac264e4
+Step 2/14 : ENV DEBIAN_FRONTEND noninteractive
+ ---> Using cache
+ ---> 0d6afb96ddc3
+Step 3/14 : RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+ ---> Using cache
+ ---> 7fab6ccbf76f
+Step 4/14 : RUN apt update && apt install --no-install-recommends git cmake ninja-build gperf     ccache dfu-util device-tree-compiler wget     python3-dev python3-pip xz-utils file     make gcc gcc-multilib g++-multilib libsdl2-dev libssl-dev -y
+ ---> Using cache
+ ---> 8f1ac79651ca
+Step 5/14 : RUN wget https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2 &&     tar -jxvf gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2 &&     mv gcc-arm-none-eabi-9-2020-q2-update gnuarmemb
+ ---> Using cache
+ ---> fb352c364323
+Step 6/14 : RUN wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.14.0/zephyr-sdk-0.14.0_linux-aarch64.tar.gz -P /zephyr &&     tar -xvf /zephyr/zephyr-sdk-0.14.0_linux-aarch64.tar.gz -C /zephyr
+ ---> Using cache
+ ---> 5ef1421ddd6b
+Step 7/14 : RUN python3 -m pip install --upgrade pip setuptools tk wheel &&     pip3 install west intelhex pyelftools click cryptography cbor
+ ---> Using cache
+ ---> 4bd42d4e1d32
+Step 8/14 : RUN source ~/.bashrc
+ ---> Using cache
+ ---> 4485f2ba78c8
+Step 9/14 : WORKDIR /west
+ ---> Using cache
+ ---> be7f82a9e006
+Step 10/14 : RUN west init -m https://github.com/nrfconnect/sdk-nrf --mr v1.4.0 &&     west update
+ ---> Using cache
+ ---> 0d2509b0b526
+Step 11/14 : RUN wget https://github.com/Kitware/CMake/releases/download/v3.22.2/cmake-3.22.2.tar.gz &&     tar -zxvf cmake-3.22.2.tar.gz &&     cd cmake-3.22.2 &&     ./bootstrap &&     make &&     make install
+ ---> Using cache
+ ---> 857490bfec87
+Step 12/14 : RUN west zephyr-export
+ ---> Using cache
+ ---> d8f0e4d019ca
+Step 13/14 : RUN wget https://launchpad.net/ubuntu/+source/device-tree-compiler/1.4.7-1/+build/15279267/+files/device-tree-compiler_1.4.7-1_amd64.deb -P /build &&     apt install /build/device-tree-compiler_1.4.7-1_amd64.deb &&     rm /build/device-tree-compiler_1.4.7-1_amd64.deb
+ ---> Using cache
+ ---> 7aefc54481ee
+Step 14/14 : WORKDIR /west
+ ---> Using cache
+ ---> 83481cd3e89d
+Successfully built 83481cd3e89d
+Successfully tagged jrpcpebblefirmware_pebble-firmware:latest
+Recreating pebble-firmware ... 
+Recreating pebble-firmware ... done
+Attaching to pebble-firmware
+pebble-firmware    | -- west build: generating a build system
+pebble-firmware    | Including boilerplate (Zephyr base): /west/zephyr/cmake/app/boilerplate.cmake
+pebble-firmware    | CMake Deprecation Warning at /west/zephyr/cmake/app/boilerplate.cmake:37 (cmake_policy):
+pebble-firmware    |   The OLD behavior for policy CMP0079 will be removed from a future version
+pebble-firmware    |   of CMake.
+pebble-firmware    | 
+pebble-firmware    |   The cmake-policies(7) manual explains that the OLD behaviors of all
+pebble-firmware    |   policies are deprecated and that a policy should be set to OLD only under
+pebble-firmware    |   specific short-term circumstances.  Projects should be ported to the NEW
+pebble-firmware    |   behavior and not rely on setting a policy to OLD.
+pebble-firmware    | Call Stack (most recent call first):
+pebble-firmware    |   /west/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:24 (include)
+pebble-firmware    |   /west/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:35 (include_boilerplate)
+pebble-firmware    |   CMakeLists.txt:16 (find_package)
+pebble-firmware    | 
+pebble-firmware    | 
+pebble-firmware    | -- Application: /app/pebble-firmware/nrf/applications/Aries
+pebble-firmware    | -- Zephyr version: 2.4.0 (/west/zephyr)
+pebble-firmware    | -- Found Python3: /usr/bin/python3.6 (found suitable exact version "3.6.9") found components: Interpreter 
+pebble-firmware    | -- Found west (found suitable version "0.12.0", minimum required is "0.7.1")
+pebble-firmware    | -- Board: thingy91_nrf9160ns
+pebble-firmware    | -- Cache files will be written to: /root/.cache/zephyr
+pebble-firmware    | -- Found dtc: /usr/bin/dtc (found suitable version "1.4.7", minimum required is "1.4.6")
+pebble-firmware    | -- Found toolchain: gnuarmemb (/gnuarmemb)
+pebble-firmware    | -- Found BOARD.dts: /west/nrf/boards/arm/thingy91_nrf9160/thingy91_nrf9160ns.dts
+pebble-firmware    | -- Generated zephyr.dts: /west/build/zephyr/zephyr.dts
+pebble-firmware    | -- Generated devicetree_unfixed.h: /west/build/zephyr/include/generated/devicetree_unfixed.h
+pebble-firmware    | Parsing /app/pebble-firmware/nrf/applications/Aries/Kconfig
+pebble-firmware    | Loaded configuration '/west/nrf/boards/arm/thingy91_nrf9160/thingy91_nrf9160ns_defconfig'
+pebble-firmware    | Merged configuration '/app/pebble-firmware/nrf/applications/Aries/prj_thingy91_nrf9160ns.conf'
+pebble-firmware    | Configuration saved to '/west/build/zephyr/.config'
+pebble-firmware    | Kconfig header saved to '/west/build/zephyr/include/generated/autoconf.h'
+pebble-firmware    | 
+pebble-firmware    | warning: FOTA_DOWNLOAD (defined at /west/nrf/subsys/net/lib/fota_download/Kconfig:7) was assigned
+pebble-firmware    | the value 'y' but got the value 'n'. Check these unsatisfied dependencies: DOWNLOAD_CLIENT (=n). See
+pebble-firmware    | http://docs.zephyrproject.org/latest/reference/kconfig/CONFIG_FOTA_DOWNLOAD.html and/or look up
+pebble-firmware    | FOTA_DOWNLOAD in the menuconfig/guiconfig interface. The Application Development Primer, Setting
+pebble-firmware    | Configuration Values, and Kconfig - Tips and Best Practices sections of the manual might be helpful
+pebble-firmware    | too.
+pebble-firmware    | 
+pebble-firmware    | 
+pebble-firmware    | warning: AWS_FOTA (defined at /west/nrf/subsys/net/lib/aws_fota/Kconfig:6) was assigned the value
+pebble-firmware    | 'y' but got the value 'n'. Check these unsatisfied dependencies: FOTA_DOWNLOAD (=n). See
+pebble-firmware    | http://docs.zephyrproject.org/latest/reference/kconfig/CONFIG_AWS_FOTA.html and/or look up AWS_FOTA
+pebble-firmware    | in the menuconfig/guiconfig interface. The Application Development Primer, Setting Configuration
+pebble-firmware    | Values, and Kconfig - Tips and Best Practices sections of the manual might be helpful too.
+pebble-firmware    | 
+pebble-firmware    | 
+pebble-firmware    | warning: LTE_EDRX_REQ (defined at /west/nrf/lib/lte_link_control/Kconfig:76) was assigned the value
+pebble-firmware    | 'n' but got the value 'y'. See
+pebble-firmware    | http://docs.zephyrproject.org/latest/reference/kconfig/CONFIG_LTE_EDRX_REQ.html and/or look up
+pebble-firmware    | LTE_EDRX_REQ in the menuconfig/guiconfig interface. The Application Development Primer, Setting
+pebble-firmware    | Configuration Values, and Kconfig - Tips and Best Practices sections of the manual might be helpful
+pebble-firmware    | too.
+pebble-firmware    | 
+pebble-firmware    | 
+pebble-firmware    | warning: The choice symbol AWS_JOBS_LOG_LEVEL_DBG (defined at
+pebble-firmware    | subsys/logging/Kconfig.template.log_config:20) was selected (set =y), but no symbol ended up as the
+pebble-firmware    | choice selection. See
+pebble-firmware    | http://docs.zephyrproject.org/latest/reference/kconfig/CONFIG_AWS_JOBS_LOG_LEVEL_DBG.html and/or
+pebble-firmware    | look up AWS_JOBS_LOG_LEVEL_DBG in the menuconfig/guiconfig interface. The Application Development
+pebble-firmware    | Primer, Setting Configuration Values, and Kconfig - Tips and Best Practices sections of the manual
+pebble-firmware    | might be helpful too.
+pebble-firmware    | 
+pebble-firmware    | 
+pebble-firmware    | warning: The choice symbol AWS_FOTA_LOG_LEVEL_DBG (defined at
+pebble-firmware    | subsys/logging/Kconfig.template.log_config:20) was selected (set =y), but no symbol ended up as the
+pebble-firmware    | choice selection. See
+pebble-firmware    | http://docs.zephyrproject.org/latest/reference/kconfig/CONFIG_AWS_FOTA_LOG_LEVEL_DBG.html and/or
+pebble-firmware    | look up AWS_FOTA_LOG_LEVEL_DBG in the menuconfig/guiconfig interface. The Application Development
+pebble-firmware    | Primer, Setting Configuration Values, and Kconfig - Tips and Best Practices sections of the manual
+pebble-firmware    | might be helpful too.
+pebble-firmware    | 
+pebble-firmware    | -- The C compiler identification is GNU 9.3.1
+pebble-firmware    | -- The CXX compiler identification is GNU 9.3.1
+pebble-firmware    | -- The ASM compiler identification is GNU
+pebble-firmware    | -- Found assembler: /gnuarmemb/bin/arm-none-eabi-gcc
+pebble-firmware    | Changed board to secure thingy91_nrf9160 (NOT NS)
+pebble-firmware    | 
+pebble-firmware    | === child image spm -  begin ===
+pebble-firmware    | Including boilerplate (Zephyr base): /west/zephyr/cmake/app/boilerplate.cmake
+pebble-firmware    | CMake Deprecation Warning at /west/zephyr/cmake/app/boilerplate.cmake:37 (cmake_policy):
+pebble-firmware    |   The OLD behavior for policy CMP0079 will be removed from a future version
+pebble-firmware    |   of CMake.
+pebble-firmware    | 
+pebble-firmware    |   The cmake-policies(7) manual explains that the OLD behaviors of all
+pebble-firmware    |   policies are deprecated and that a policy should be set to OLD only under
+pebble-firmware    |   specific short-term circumstances.  Projects should be ported to the NEW
+pebble-firmware    |   behavior and not rely on setting a policy to OLD.
+pebble-firmware    | Call Stack (most recent call first):
+pebble-firmware    |   /west/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:24 (include)
+pebble-firmware    |   /west/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:35 (include_boilerplate)
+pebble-firmware    |   CMakeLists.txt:8 (find_package)
+pebble-firmware    | 
+pebble-firmware    | 
+pebble-firmware    | -- Application: /west/nrf/samples/spm
+pebble-firmware    | -- Zephyr version: 2.4.0 (/west/zephyr)
+pebble-firmware    | -- Found Python3: /usr/bin/python3.6 (found suitable exact version "3.6.9") found components: Interpreter 
+pebble-firmware    | -- Found west (found suitable version "0.12.0", minimum required is "0.7.1")
+pebble-firmware    | -- Board: thingy91_nrf9160
+pebble-firmware    | -- Cache files will be written to: /root/.cache/zephyr
+pebble-firmware    | -- Found dtc: /usr/bin/dtc (found suitable version "1.4.7", minimum required is "1.4.6")
+pebble-firmware    | -- Found toolchain: gnuarmemb (/gnuarmemb)
+pebble-firmware    | -- Found BOARD.dts: /west/nrf/boards/arm/thingy91_nrf9160/thingy91_nrf9160.dts
+pebble-firmware    | -- Generated zephyr.dts: /west/build/spm/zephyr/zephyr.dts
+pebble-firmware    | -- Generated devicetree_unfixed.h: /west/build/spm/zephyr/include/generated/devicetree_unfixed.h
+pebble-firmware    | Parsing /west/zephyr/Kconfig
+pebble-firmware    | Loaded configuration '/west/nrf/boards/arm/thingy91_nrf9160/thingy91_nrf9160_defconfig'
+pebble-firmware    | Merged configuration '/app/pebble-firmware/nrf/applications/Aries/spm.conf'
+pebble-firmware    | Merged configuration '/west/build/spm/zephyr/misc/generated/extra_kconfig_options.conf'
+pebble-firmware    | Configuration saved to '/west/build/spm/zephyr/.config'
+pebble-firmware    | Kconfig header saved to '/west/build/spm/zephyr/include/generated/autoconf.h'
+pebble-firmware    | -- The C compiler identification is GNU 9.3.1
+pebble-firmware    | -- The CXX compiler identification is GNU 9.3.1
+pebble-firmware    | -- The ASM compiler identification is GNU
+pebble-firmware    | -- Found assembler: /gnuarmemb/bin/arm-none-eabi-gcc
+pebble-firmware    | CMake Deprecation Warning at /west/modules/lib/civetweb/CMakeLists.txt:2 (cmake_minimum_required):
+pebble-firmware    |   Compatibility with CMake < 2.8.12 will be removed from a future version of
+pebble-firmware    |   CMake.
+pebble-firmware    | 
+pebble-firmware    |   Update the VERSION argument <min> value or use a ...<max> suffix to tell
+pebble-firmware    |   CMake that the project does not need compatibility with older versions.
+pebble-firmware    | 
+pebble-firmware    | 
+pebble-firmware    | -- Configuring done
+pebble-firmware    | CMake Warning (dev) at /west/zephyr/cmake/linker/ld/target.cmake:33 (add_custom_command):
+pebble-firmware    |   Policy CMP0116 is not set: Ninja generators transform DEPFILEs from
+pebble-firmware    |   add_custom_command().  Run "cmake --help-policy CMP0116" for policy
+pebble-firmware    |   details.  Use the cmake_policy command to set the policy and suppress this
+pebble-firmware    |   warning.
+pebble-firmware    | Call Stack (most recent call first):
+pebble-firmware    |   /west/zephyr/CMakeLists.txt:682 (configure_linker_script)
+pebble-firmware    | This warning is for project developers.  Use -Wno-dev to suppress it.
+pebble-firmware    | 
+pebble-firmware    | CMake Warning (dev) at /west/zephyr/cmake/linker/ld/target.cmake:33 (add_custom_command):
+pebble-firmware    |   Policy CMP0116 is not set: Ninja generators transform DEPFILEs from
+pebble-firmware    |   add_custom_command().  Run "cmake --help-policy CMP0116" for policy
+pebble-firmware    |   details.  Use the cmake_policy command to set the policy and suppress this
+pebble-firmware    |   warning.
+pebble-firmware    | Call Stack (most recent call first):
+pebble-firmware    |   /west/zephyr/CMakeLists.txt:1021 (configure_linker_script)
+pebble-firmware    | This warning is for project developers.  Use -Wno-dev to suppress it.
+pebble-firmware    | 
+pebble-firmware    | -- Generating done
+pebble-firmware    | -- Build files have been written to: /west/build/spm
+pebble-firmware    | === child image spm -  end ===
+pebble-firmware    | 
+pebble-firmware    | Changed board to secure thingy91_nrf9160 (NOT NS)
+pebble-firmware    | 
+pebble-firmware    | === child image mcuboot -  begin ===
+pebble-firmware    | Including boilerplate (Zephyr base): /west/zephyr/cmake/app/boilerplate.cmake
+pebble-firmware    | CMake Deprecation Warning at /west/zephyr/cmake/app/boilerplate.cmake:37 (cmake_policy):
+pebble-firmware    |   The OLD behavior for policy CMP0079 will be removed from a future version
+pebble-firmware    |   of CMake.
+pebble-firmware    | 
+pebble-firmware    |   The cmake-policies(7) manual explains that the OLD behaviors of all
+pebble-firmware    |   policies are deprecated and that a policy should be set to OLD only under
+pebble-firmware    |   specific short-term circumstances.  Projects should be ported to the NEW
+pebble-firmware    |   behavior and not rely on setting a policy to OLD.
+pebble-firmware    | Call Stack (most recent call first):
+pebble-firmware    |   /west/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:24 (include)
+pebble-firmware    |   /west/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:35 (include_boilerplate)
+pebble-firmware    |   CMakeLists.txt:44 (find_package)
+pebble-firmware    | 
+pebble-firmware    | 
+pebble-firmware    | -- Application: /west/bootloader/mcuboot/boot/zephyr
+pebble-firmware    | -- Zephyr version: 2.4.0 (/west/zephyr)
+pebble-firmware    | -- Found Python3: /usr/bin/python3.6 (found suitable exact version "3.6.9") found components: Interpreter 
+pebble-firmware    | -- Found west (found suitable version "0.12.0", minimum required is "0.7.1")
+pebble-firmware    | -- Board: thingy91_nrf9160
+pebble-firmware    | -- Cache files will be written to: /root/.cache/zephyr
+pebble-firmware    | -- Found dtc: /usr/bin/dtc (found suitable version "1.4.7", minimum required is "1.4.6")
+pebble-firmware    | -- Found toolchain: gnuarmemb (/gnuarmemb)
+pebble-firmware    | -- Found BOARD.dts: /west/nrf/boards/arm/thingy91_nrf9160/thingy91_nrf9160.dts
+pebble-firmware    | -- Found devicetree overlay: /west/bootloader/mcuboot/boot/zephyr/dts.overlay
+pebble-firmware    | -- Generated zephyr.dts: /west/build/mcuboot/zephyr/zephyr.dts
+pebble-firmware    | -- Generated devicetree_unfixed.h: /west/build/mcuboot/zephyr/include/generated/devicetree_unfixed.h
+pebble-firmware    | Parsing /west/bootloader/mcuboot/boot/zephyr/Kconfig
+pebble-firmware    | Loaded configuration '/west/nrf/boards/arm/thingy91_nrf9160/thingy91_nrf9160_defconfig'
+pebble-firmware    | Merged configuration '/west/bootloader/mcuboot/boot/zephyr/prj.conf'
+pebble-firmware    | Merged configuration '/west/bootloader/mcuboot/boot/zephyr/boards/thingy91_nrf9160.conf'
+pebble-firmware    | Configuration saved to '/west/build/mcuboot/zephyr/.config'
+pebble-firmware    | Kconfig header saved to '/west/build/mcuboot/zephyr/include/generated/autoconf.h'
+pebble-firmware    | -- The C compiler identification is GNU 9.3.1
+pebble-firmware    | -- The CXX compiler identification is GNU 9.3.1
+pebble-firmware    | -- The ASM compiler identification is GNU
+pebble-firmware    | -- Found assembler: /gnuarmemb/bin/arm-none-eabi-gcc
+pebble-firmware    | CMake Warning at /west/nrf/lib/flash_patch/CMakeLists.txt:9 (message):
+pebble-firmware    |   
+pebble-firmware    | 
+pebble-firmware    |         ----------------------------------------------------------
+pebble-firmware    |         --- WARNING: To maintain the integrity of secure boot, ---
+pebble-firmware    |         --- enable CONFIG_DISABLE_FLASH_PATCH in production.   ---
+pebble-firmware    |         ----------------------------------------------------------
+pebble-firmware    | 
+pebble-firmware    | 
+pebble-firmware    | CMake Deprecation Warning at /west/modules/lib/civetweb/CMakeLists.txt:2 (cmake_minimum_required):
+pebble-firmware    |   Compatibility with CMake < 2.8.12 will be removed from a future version of
+pebble-firmware    |   CMake.
+pebble-firmware    | 
+pebble-firmware    |   Update the VERSION argument <min> value or use a ...<max> suffix to tell
+pebble-firmware    |   CMake that the project does not need compatibility with older versions.
+pebble-firmware    | 
+pebble-firmware    | 
+pebble-firmware    | CMake Warning at /west/zephyr/kernel/CMakeLists.txt:54 (message):
+pebble-firmware    |   Single threaded mode (CONFIG_MULTITHREADING=n) is deprecated
+pebble-firmware    | 
+pebble-firmware    | 
+pebble-firmware    | MCUBoot bootloader key file: /west/bootloader/mcuboot/root-ec-p256.pem
+pebble-firmware    | -- Configuring done
+pebble-firmware    | CMake Warning (dev) at /west/zephyr/cmake/linker/ld/target.cmake:33 (add_custom_command):
+pebble-firmware    |   Policy CMP0116 is not set: Ninja generators transform DEPFILEs from
+pebble-firmware    |   add_custom_command().  Run "cmake --help-policy CMP0116" for policy
+pebble-firmware    |   details.  Use the cmake_policy command to set the policy and suppress this
+pebble-firmware    |   warning.
+pebble-firmware    | Call Stack (most recent call first):
+pebble-firmware    |   /west/zephyr/CMakeLists.txt:682 (configure_linker_script)
+pebble-firmware    | This warning is for project developers.  Use -Wno-dev to suppress it.
+pebble-firmware    | 
+pebble-firmware    | CMake Warning (dev) at /west/zephyr/cmake/linker/ld/target.cmake:33 (add_custom_command):
+pebble-firmware    |   Policy CMP0116 is not set: Ninja generators transform DEPFILEs from
+pebble-firmware    |   add_custom_command().  Run "cmake --help-policy CMP0116" for policy
+pebble-firmware    |   details.  Use the cmake_policy command to set the policy and suppress this
+pebble-firmware    |   warning.
+pebble-firmware    | Call Stack (most recent call first):
+pebble-firmware    |   /west/zephyr/CMakeLists.txt:1021 (configure_linker_script)
+pebble-firmware    | This warning is for project developers.  Use -Wno-dev to suppress it.
+pebble-firmware    | 
+pebble-firmware    | -- Generating done
+pebble-firmware    | -- Build files have been written to: /west/build/mcuboot
+pebble-firmware    | === child image mcuboot -  end ===
+pebble-firmware    | 
+pebble-firmware    | CMake Warning at /west/nrf/cmake/mcuboot.cmake:120 (message):
+pebble-firmware    |   
+pebble-firmware    | 
+pebble-firmware    |         ---------------------------------------------------------
+pebble-firmware    |         --- WARNING: Using default MCUBoot key, it should not ---
+pebble-firmware    |         --- be used for production.                           ---
+pebble-firmware    |         ---------------------------------------------------------
+pebble-firmware    |         
+pebble-firmware    | 
+pebble-firmware    | Call Stack (most recent call first):
+pebble-firmware    |   /west/bootloader/mcuboot/zephyr/CMakeLists.txt:1 (include)
+pebble-firmware    | 
+pebble-firmware    | 
+pebble-firmware    | CMake Deprecation Warning at /west/modules/lib/civetweb/CMakeLists.txt:2 (cmake_minimum_required):
+pebble-firmware    |   Compatibility with CMake < 2.8.12 will be removed from a future version of
+pebble-firmware    |   CMake.
+pebble-firmware    | 
+pebble-firmware    |   Update the VERSION argument <min> value or use a ...<max> suffix to tell
+pebble-firmware    |   CMake that the project does not need compatibility with older versions.
+pebble-firmware    | 
+pebble-firmware    | 
+pebble-firmware    | CMake Warning at /west/zephyr/CMakeLists.txt:1331 (message):
+pebble-firmware    |   __ASSERT() statements are globally ENABLED
+pebble-firmware    | 
+pebble-firmware    | 
+pebble-firmware    | Dropping partition 'mcuboot' since it is statically defined.
+pebble-firmware    | Dropping partition 'mcuboot_pad' since it is statically defined.
+pebble-firmware    | Dropping partition 'mcuboot_primary' since it is statically defined.
+pebble-firmware    | Dropping partition 'mcuboot_primary_app' since it is statically defined.
+pebble-firmware    | Dropping partition 'mcuboot_secondary' since it is statically defined.
+pebble-firmware    | Dropping partition 'spm' since it is statically defined.
+pebble-firmware    | -- Configuring done
+pebble-firmware    | CMake Warning (dev) at /west/zephyr/cmake/linker/ld/target.cmake:33 (add_custom_command):
+pebble-firmware    |   Policy CMP0116 is not set: Ninja generators transform DEPFILEs from
+pebble-firmware    |   add_custom_command().  Run "cmake --help-policy CMP0116" for policy
+pebble-firmware    |   details.  Use the cmake_policy command to set the policy and suppress this
+pebble-firmware    |   warning.
+pebble-firmware    | Call Stack (most recent call first):
+pebble-firmware    |   /west/zephyr/CMakeLists.txt:682 (configure_linker_script)
+pebble-firmware    | This warning is for project developers.  Use -Wno-dev to suppress it.
+pebble-firmware    | 
+pebble-firmware    | CMake Warning (dev) at /west/zephyr/cmake/linker/ld/target.cmake:33 (add_custom_command):
+pebble-firmware    |   Policy CMP0116 is not set: Ninja generators transform DEPFILEs from
+pebble-firmware    |   add_custom_command().  Run "cmake --help-policy CMP0116" for policy
+pebble-firmware    |   details.  Use the cmake_policy command to set the policy and suppress this
+pebble-firmware    |   warning.
+pebble-firmware    | Call Stack (most recent call first):
+pebble-firmware    |   /west/zephyr/CMakeLists.txt:1021 (configure_linker_script)
+pebble-firmware    | This warning is for project developers.  Use -Wno-dev to suppress it.
+pebble-firmware    | 
+pebble-firmware    | -- Generating done
+pebble-firmware    | -- Build files have been written to: /west/build
+pebble-firmware    | -- west build: building application
+pebble-firmware    | [1/362] Preparing syscall dependency handling
+pebble-firmware    | 
+pebble-firmware    | [2/362] Creating directories for 'spm_subimage'
+pebble-firmware    | [3/362] Generating zephyr/sram_secure.hex
+pebble-firmware    | [4/362] No download step for 'spm_subimage'
+pebble-firmware    | [5/362] Building C object modules/nrfxlib/nrf_security/src/mbedtls/shared/CMakeFiles/mbedcrypto_shared.dir/west/zephyr/misc/empty_file.c.obj
+pebble-firmware    | [6/362] Building C object modules/nrfxlib/nrf_security/src/mbedtls/CMakeFiles/mbedtls_external.dir/west/zephyr/misc/empty_file.c.obj
+pebble-firmware    | [7/362] Creating directories for 'mcuboot_subimage'
+pebble-firmware    | [8/362] No update step for 'spm_subimage'
+pebble-firmware    | [9/362] Generating misc/generated/syscalls_subdirs.trigger
+pebble-firmware    | [10/362] No patch step for 'spm_subimage'
+pebble-firmware    | [11/362] No download step for 'mcuboot_subimage'
+pebble-firmware    | [12/362] Linking C static library modules/nrfxlib/nrf_security/src/mbedtls/libmbedtls_external.a
+pebble-firmware    | [13/362] No configure step for 'spm_subimage'
+pebble-firmware    | [13/362] Performing build step for 'spm_subimage'
+pebble-firmware    | [1/210] Building C object modules/nrfxlib/nrf_security/src/mbedtls/CMakeFiles/mbedtls_external.dir/west/zephyr/misc/empty_file.c.obj
+pebble-firmware    | [2/210] Preparing syscall dependency handling
+pebble-firmware    | 
+pebble-firmware    | [3/210] Building C object modules/nrfxlib/nrf_security/src/mbedtls/shared/CMakeFiles/mbedcrypto_shared.dir/west/zephyr/misc/empty_file.c.obj
+pebble-firmware    | [4/210] Building C object modules/nrfxlib/nrf_security/src/mbedtls/cc310/CMakeFiles/mbedcrypto_cc3xx.dir/west/zephyr/misc/empty_file.c.obj
+pebble-firmware    | [5/210] Building C object modules/nrfxlib/nrf_security/src/mbedtls/cc310/CMakeFiles/mbedcrypto_cc3xx_noglue.dir/west/zephyr/misc/empty_file.c.obj
+pebble-firmware    | [6/210] Linking C static library modules/nrfxlib/nrf_security/src/mbedtls/libmbedtls_external.a
+pebble-firmware    | [7/210] Generating misc/generated/syscalls_subdirs.trigger
+pebble-firmware    | [8/210] Building C object modules/nrfxlib/nrf_security/src/mbedtls/cc310/CMakeFiles/mbedcrypto_cc3xx_noglue.dir/west/mbedtls/library/ecjpake.c.obj
+pebble-firmware    | [9/210] Linking C static library modules/nrfxlib/nrf_security/src/mbedtls/cc310/libmbedcrypto_cc3xx_noglue.a
+pebble-firmware    | [10/210] Building C object modules/nrfxlib/nrf_security/src/mbedtls/shared/CMakeFiles/mbedcrypto_shared.dir/west/mbedtls/library/sha512.c.obj
+pebble-firmware    | [11/210] Linking C static library modules/nrfxlib/nrf_security/src/mbedtls/shared/libmbedcrypto_shared.a
+pebble-firmware    | [12/210] Linking C static library modules/nrfxlib/nrf_security/src/mbedtls/cc310/libmbedcrypto_cc3xx.a
+pebble-firmware    | [13/210] Generating misc/generated/syscalls.json, misc/generated/struct_tags.json
+pebble-firmware    | [14/210] Generating include/generated/kobj-types-enum.h, include/generated/otype-to-str.h
+pebble-firmware    | [15/210] Generating include/generated/syscall_dispatch.c, include/generated/syscall_list.h
+pebble-firmware    | [16/210] Generating include/generated/driver-validation.h
+pebble-firmware    | [17/210] Building C object zephyr/CMakeFiles/offsets.dir/arch/arm/core/offsets/offsets.c.obj
+pebble-firmware    | FAILED: zephyr/CMakeFiles/offsets.dir/arch/arm/core/offsets/offsets.c.obj 
+pebble-firmware    | ccache /gnuarmemb/bin/arm-none-eabi-gcc -DBUILD_VERSION=v2.4.0-ncs1 -DEXT_API_MAGIC=0x281ee6de,0xb845acea,23298 -DFIRMWARE_INFO_MAGIC=0x281ee6de,0x8fcebb4c,23298 -DKERNEL -DMBEDTLS_CONFIG_FILE=\"nrf-config.h\" -DNRF52840_XXAA -DNRF9160_XXAA -DUSE_PARTITION_MANAGER=1 -D_FORTIFY_SOURCE=2 -D__PROGRAM_START -D__ZEPHYR__=1 -I/west/zephyr/kernel/include -I/west/zephyr/arch/arm/include -I/west/zephyr/include -I/west/build/spm/zephyr/include/generated -I/west/zephyr/soc/arm/nordic_nrf/nrf91 -I/west/nrf/include -I/west/nrfxlib/crypto/nrf_cc310_mbedcrypto/include/mbedtls -I/west/nrfxlib/crypto/nrf_cc310_mbedcrypto/include -I/west/build/spm/modules/nrfxlib/nrf_security/include -I/west/build/spm/modules/nrfxlib/nrf_security/include/mbedtls_generated -I/west/mbedtls/include -I/west/mbedtls/include/mbedtls -I/west/modules/hal/cmsis/CMSIS/Core/Include -I/west/modules/hal/nordic/nrfx -I/west/modules/hal/nordic/nrfx/drivers/include -I/west/modules/hal/nordic/nrfx/mdk -I/west/modules/hal/nordic/. -I/west/nrf/samples/spm/kernel/include -isystem /west/zephyr/lib/libc/minimal/include -isystem /gnuarmemb/bin/../lib/gcc/arm-none-eabi/9.3.1/include -isystem /gnuarmemb/bin/../lib/gcc/arm-none-eabi/9.3.1/include-fixed -isystem /west/nrfxlib/crypto/nrf_cc310_platform/include -Os -imacros /west/build/spm/zephyr/include/generated/autoconf.h -ffreestanding -fno-common -g -mcpu=cortex-m33 -mthumb -mabi=aapcs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -imacros /west/zephyr/include/toolchain/zephyr_stdint.h -Wall -Wformat -Wformat-security -Wno-format-zero-length -Wno-main -Wno-pointer-sign -Wpointer-arith -Wno-address-of-packed-member -Wno-unused-but-set-variable -Werror=implicit-int -fno-asynchronous-unwind-tables -fno-pie -fno-pic -fno-strict-overflow -fno-reorder-functions -fno-defer-pop -fmacro-prefix-map=/west/nrf/samples/spm=CMAKE_SOURCE_DIR -fmacro-prefix-map=/west/zephyr=ZEPHYR_BASE -fmacro-prefix-map=/west=WEST_TOPDIR -ffunction-sections -fdata-sections -mcmse -std=c99 -nostdinc -MD -MT zephyr/CMakeFiles/offsets.dir/arch/arm/core/offsets/offsets.c.obj -MF zephyr/CMakeFiles/offsets.dir/arch/arm/core/offsets/offsets.c.obj.d -o zephyr/CMakeFiles/offsets.dir/arch/arm/core/offsets/offsets.c.obj -c /west/zephyr/arch/arm/core/offsets/offsets.c
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:73: warning: "__CORTEX_M" redefined
+pebble-firmware    |    73 | #define __CORTEX_M                 (33U)                                       /*!< Cortex-M Core */
+pebble-firmware    |       | 
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:71: note: this is the location of the previous definition
+pebble-firmware    |    71 | #define __CORTEX_M                (4U)                                   /*!< Cortex-M Core */
+pebble-firmware    |       | 
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:335:3: error: conflicting types for 'APSR_Type'
+pebble-firmware    |   335 | } APSR_Type;
+pebble-firmware    |       |   ^~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:278:3: note: previous declaration of 'APSR_Type' was here
+pebble-firmware    |   278 | } APSR_Type;
+pebble-firmware    |       |   ^~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:368:3: error: conflicting types for 'IPSR_Type'
+pebble-firmware    |   368 | } IPSR_Type;
+pebble-firmware    |       |   ^~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:311:3: note: previous declaration of 'IPSR_Type' was here
+pebble-firmware    |   311 | } IPSR_Type;
+pebble-firmware    |       |   ^~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:395:3: error: conflicting types for 'xPSR_Type'
+pebble-firmware    |   395 | } xPSR_Type;
+pebble-firmware    |       |   ^~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:339:3: note: previous declaration of 'xPSR_Type' was here
+pebble-firmware    |   339 | } xPSR_Type;
+pebble-firmware    |       |   ^~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:440:3: error: conflicting types for 'CONTROL_Type'
+pebble-firmware    |   440 | } CONTROL_Type;
+pebble-firmware    |       |   ^~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:386:3: note: previous declaration of 'CONTROL_Type' was here
+pebble-firmware    |   386 | } CONTROL_Type;
+pebble-firmware    |       |   ^~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:485:4: error: conflicting types for 'NVIC_Type'
+pebble-firmware    |   485 | }  NVIC_Type;
+pebble-firmware    |       |    ^~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:426:4: note: previous declaration of 'NVIC_Type' was here
+pebble-firmware    |   426 | }  NVIC_Type;
+pebble-firmware    |       |    ^~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:548:3: error: conflicting types for 'SCB_Type'
+pebble-firmware    |   548 | } SCB_Type;
+pebble-firmware    |       |   ^~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:468:3: note: previous declaration of 'SCB_Type' was here
+pebble-firmware    |   468 | } SCB_Type;
+pebble-firmware    |       |   ^~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:570: warning: "SCB_ICSR_NMIPENDSET_Pos" redefined
+pebble-firmware    |   570 | #define SCB_ICSR_NMIPENDSET_Pos            SCB_ICSR_PENDNMISET_Pos                        /*!< SCB ICSR: NMIPENDSET Position, backward compatibility */
+pebble-firmware    |       | 
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:487: note: this is the location of the previous definition
+pebble-firmware    |   487 | #define SCB_ICSR_NMIPENDSET_Pos            31U                                            /*!< SCB ICSR: NMIPENDSET Position */
+pebble-firmware    |       | 
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:571: warning: "SCB_ICSR_NMIPENDSET_Msk" redefined
+pebble-firmware    |   571 | #define SCB_ICSR_NMIPENDSET_Msk            SCB_ICSR_PENDNMISET_Msk                        /*!< SCB ICSR: NMIPENDSET Mask, backward compatibility */
+pebble-firmware    |       | 
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:488: note: this is the location of the previous definition
+pebble-firmware    |   488 | #define SCB_ICSR_NMIPENDSET_Msk            (1UL << SCB_ICSR_NMIPENDSET_Pos)               /*!< SCB ICSR: NMIPENDSET Mask */
+pebble-firmware    |       | 
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:942:3: error: conflicting types for 'SCnSCB_Type'
+pebble-firmware    |   942 | } SCnSCB_Type;
+pebble-firmware    |       |   ^~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:729:3: note: previous declaration of 'SCnSCB_Type' was here
+pebble-firmware    |   729 | } SCnSCB_Type;
+pebble-firmware    |       |   ^~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:967:3: error: conflicting types for 'SysTick_Type'
+pebble-firmware    |   967 | } SysTick_Type;
+pebble-firmware    |       |   ^~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:770:3: note: previous declaration of 'SysTick_Type' was here
+pebble-firmware    |   770 | } SysTick_Type;
+pebble-firmware    |       |   ^~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:1046:3: error: conflicting types for 'ITM_Type'
+pebble-firmware    |  1046 | } ITM_Type;
+pebble-firmware    |       |   ^~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:847:3: note: previous declaration of 'ITM_Type' was here
+pebble-firmware    |   847 | } ITM_Type;
+pebble-firmware    |       |   ^~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:1190:3: error: conflicting types for 'DWT_Type'
+pebble-firmware    |  1190 | } DWT_Type;
+pebble-firmware    |       |   ^~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:929:3: note: previous declaration of 'DWT_Type' was here
+pebble-firmware    |   929 | } DWT_Type;
+pebble-firmware    |       |   ^~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:1325:3: error: conflicting types for 'TPI_Type'
+pebble-firmware    |  1325 | } TPI_Type;
+pebble-firmware    |       |   ^~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1077:3: note: previous declaration of 'TPI_Type' was here
+pebble-firmware    |  1077 | } TPI_Type;
+pebble-firmware    |       |   ^~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:1450: warning: "TPI_DEVID_NrTraceInput_Msk" redefined
+pebble-firmware    |  1450 | #define TPI_DEVID_NrTraceInput_Msk         (0x3FUL /*<< TPI_DEVID_NrTraceInput_Pos*/)  /*!< TPI DEVID: NrTraceInput Mask */
+pebble-firmware    |       | 
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1190: note: this is the location of the previous definition
+pebble-firmware    |  1190 | #define TPI_DEVID_NrTraceInput_Msk         (0x1FUL /*<< TPI_DEVID_NrTraceInput_Pos*/)  /*!< TPI DEVID: NrTraceInput Mask */
+pebble-firmware    |       | 
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:1494:3: error: conflicting types for 'MPU_Type'
+pebble-firmware    |  1494 | } MPU_Type;
+pebble-firmware    |       |   ^~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1226:3: note: previous declaration of 'MPU_Type' was here
+pebble-firmware    |  1226 | } MPU_Type;
+pebble-firmware    |       |   ^~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:1681:3: error: conflicting types for 'FPU_Type'
+pebble-firmware    |  1681 | } FPU_Type;
+pebble-firmware    |       |   ^~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1318:3: note: previous declaration of 'FPU_Type' was here
+pebble-firmware    |  1318 | } FPU_Type;
+pebble-firmware    |       |   ^~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:1816:3: error: conflicting types for 'CoreDebug_Type'
+pebble-firmware    |  1816 | } CoreDebug_Type;
+pebble-firmware    |       |   ^~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1427:3: note: previous declaration of 'CoreDebug_Type' was here
+pebble-firmware    |  1427 | } CoreDebug_Type;
+pebble-firmware    |       |   ^~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2213: warning: "CoreDebug" redefined
+pebble-firmware    |  2213 |   #define CoreDebug           ((CoreDebug_Type *)     CoreDebug_BASE   ) /*!< \deprecated Core Debug configuration struct */
+pebble-firmware    |       | 
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1566: note: this is the location of the previous definition
+pebble-firmware    |  1566 | #define CoreDebug           ((CoreDebug_Type *)     CoreDebug_BASE)   /*!< Core Debug configuration struct */
+pebble-firmware    |       | 
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2346:22: error: redefinition of '__NVIC_SetPriorityGrouping'
+pebble-firmware    |  2346 | __STATIC_INLINE void __NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1653:22: note: previous definition of '__NVIC_SetPriorityGrouping' was here
+pebble-firmware    |  1653 | __STATIC_INLINE void __NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2365:26: error: redefinition of '__NVIC_GetPriorityGrouping'
+pebble-firmware    |  2365 | __STATIC_INLINE uint32_t __NVIC_GetPriorityGrouping(void)
+pebble-firmware    |       |                          ^~~~~~~~~~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1672:26: note: previous definition of '__NVIC_GetPriorityGrouping' was here
+pebble-firmware    |  1672 | __STATIC_INLINE uint32_t __NVIC_GetPriorityGrouping(void)
+pebble-firmware    |       |                          ^~~~~~~~~~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2377:22: error: redefinition of '__NVIC_EnableIRQ'
+pebble-firmware    |  2377 | __STATIC_INLINE void __NVIC_EnableIRQ(IRQn_Type IRQn)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1684:22: note: previous definition of '__NVIC_EnableIRQ' was here
+pebble-firmware    |  1684 | __STATIC_INLINE void __NVIC_EnableIRQ(IRQn_Type IRQn)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2396:26: error: redefinition of '__NVIC_GetEnableIRQ'
+pebble-firmware    |  2396 | __STATIC_INLINE uint32_t __NVIC_GetEnableIRQ(IRQn_Type IRQn)
+pebble-firmware    |       |                          ^~~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1703:26: note: previous definition of '__NVIC_GetEnableIRQ' was here
+pebble-firmware    |  1703 | __STATIC_INLINE uint32_t __NVIC_GetEnableIRQ(IRQn_Type IRQn)
+pebble-firmware    |       |                          ^~~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2415:22: error: redefinition of '__NVIC_DisableIRQ'
+pebble-firmware    |  2415 | __STATIC_INLINE void __NVIC_DisableIRQ(IRQn_Type IRQn)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1722:22: note: previous definition of '__NVIC_DisableIRQ' was here
+pebble-firmware    |  1722 | __STATIC_INLINE void __NVIC_DisableIRQ(IRQn_Type IRQn)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2434:26: error: redefinition of '__NVIC_GetPendingIRQ'
+pebble-firmware    |  2434 | __STATIC_INLINE uint32_t __NVIC_GetPendingIRQ(IRQn_Type IRQn)
+pebble-firmware    |       |                          ^~~~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1741:26: note: previous definition of '__NVIC_GetPendingIRQ' was here
+pebble-firmware    |  1741 | __STATIC_INLINE uint32_t __NVIC_GetPendingIRQ(IRQn_Type IRQn)
+pebble-firmware    |       |                          ^~~~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2453:22: error: redefinition of '__NVIC_SetPendingIRQ'
+pebble-firmware    |  2453 | __STATIC_INLINE void __NVIC_SetPendingIRQ(IRQn_Type IRQn)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1760:22: note: previous definition of '__NVIC_SetPendingIRQ' was here
+pebble-firmware    |  1760 | __STATIC_INLINE void __NVIC_SetPendingIRQ(IRQn_Type IRQn)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2468:22: error: redefinition of '__NVIC_ClearPendingIRQ'
+pebble-firmware    |  2468 | __STATIC_INLINE void __NVIC_ClearPendingIRQ(IRQn_Type IRQn)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1775:22: note: previous definition of '__NVIC_ClearPendingIRQ' was here
+pebble-firmware    |  1775 | __STATIC_INLINE void __NVIC_ClearPendingIRQ(IRQn_Type IRQn)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2485:26: error: redefinition of '__NVIC_GetActive'
+pebble-firmware    |  2485 | __STATIC_INLINE uint32_t __NVIC_GetActive(IRQn_Type IRQn)
+pebble-firmware    |       |                          ^~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1792:26: note: previous definition of '__NVIC_GetActive' was here
+pebble-firmware    |  1792 | __STATIC_INLINE uint32_t __NVIC_GetActive(IRQn_Type IRQn)
+pebble-firmware    |       |                          ^~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2574:22: error: redefinition of '__NVIC_SetPriority'
+pebble-firmware    |  2574 | __STATIC_INLINE void __NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1814:22: note: previous definition of '__NVIC_SetPriority' was here
+pebble-firmware    |  1814 | __STATIC_INLINE void __NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2596:26: error: redefinition of '__NVIC_GetPriority'
+pebble-firmware    |  2596 | __STATIC_INLINE uint32_t __NVIC_GetPriority(IRQn_Type IRQn)
+pebble-firmware    |       |                          ^~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1836:26: note: previous definition of '__NVIC_GetPriority' was here
+pebble-firmware    |  1836 | __STATIC_INLINE uint32_t __NVIC_GetPriority(IRQn_Type IRQn)
+pebble-firmware    |       |                          ^~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2621:26: error: redefinition of 'NVIC_EncodePriority'
+pebble-firmware    |  2621 | __STATIC_INLINE uint32_t NVIC_EncodePriority (uint32_t PriorityGroup, uint32_t PreemptPriority, uint32_t SubPriority)
+pebble-firmware    |       |                          ^~~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1861:26: note: previous definition of 'NVIC_EncodePriority' was here
+pebble-firmware    |  1861 | __STATIC_INLINE uint32_t NVIC_EncodePriority (uint32_t PriorityGroup, uint32_t PreemptPriority, uint32_t SubPriority)
+pebble-firmware    |       |                          ^~~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2648:22: error: redefinition of 'NVIC_DecodePriority'
+pebble-firmware    |  2648 | __STATIC_INLINE void NVIC_DecodePriority (uint32_t Priority, uint32_t PriorityGroup, uint32_t* const pPreemptPriority, uint32_t* const pSubPriority)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1888:22: note: previous definition of 'NVIC_DecodePriority' was here
+pebble-firmware    |  1888 | __STATIC_INLINE void NVIC_DecodePriority (uint32_t Priority, uint32_t PriorityGroup, uint32_t* const pPreemptPriority, uint32_t* const pSubPriority)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2671:22: error: redefinition of '__NVIC_SetVector'
+pebble-firmware    |  2671 | __STATIC_INLINE void __NVIC_SetVector(IRQn_Type IRQn, uint32_t vector)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1911:22: note: previous definition of '__NVIC_SetVector' was here
+pebble-firmware    |  1911 | __STATIC_INLINE void __NVIC_SetVector(IRQn_Type IRQn, uint32_t vector)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2687:26: error: redefinition of '__NVIC_GetVector'
+pebble-firmware    |  2687 | __STATIC_INLINE uint32_t __NVIC_GetVector(IRQn_Type IRQn)
+pebble-firmware    |       |                          ^~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1927:26: note: previous definition of '__NVIC_GetVector' was here
+pebble-firmware    |  1927 | __STATIC_INLINE uint32_t __NVIC_GetVector(IRQn_Type IRQn)
+pebble-firmware    |       |                          ^~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2698:34: error: redefinition of '__NVIC_SystemReset'
+pebble-firmware    |  2698 | __NO_RETURN __STATIC_INLINE void __NVIC_SystemReset(void)
+pebble-firmware    |       |                                  ^~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1938:34: note: previous definition of '__NVIC_SystemReset' was here
+pebble-firmware    |  1938 | __NO_RETURN __STATIC_INLINE void __NVIC_SystemReset(void)
+pebble-firmware    |       |                                  ^~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2921,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/mpu_armv8.h:89: warning: "ARM_MPU_RBAR" redefined
+pebble-firmware    |    89 | #define ARM_MPU_RBAR(BASE, SH, RO, NP, XN) \
+pebble-firmware    |       | 
+pebble-firmware    | In file included from /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1960,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/mpu_armv7.h:75: note: this is the location of the previous definition
+pebble-firmware    |    75 | #define ARM_MPU_RBAR(Region, BaseAddress) \
+pebble-firmware    |       | 
+pebble-firmware    | In file included from /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2921,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/mpu_armv8.h:125:3: error: conflicting types for 'ARM_MPU_Region_t'
+pebble-firmware    |   125 | } ARM_MPU_Region_t;
+pebble-firmware    |       |   ^~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1960,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/mpu_armv7.h:186:3: note: previous declaration of 'ARM_MPU_Region_t' was here
+pebble-firmware    |   186 | } ARM_MPU_Region_t;
+pebble-firmware    |       |   ^~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2921,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/mpu_armv8.h:130:22: error: redefinition of 'ARM_MPU_Enable'
+pebble-firmware    |   130 | __STATIC_INLINE void ARM_MPU_Enable(uint32_t MPU_Control)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1960,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/mpu_armv7.h:191:22: note: previous definition of 'ARM_MPU_Enable' was here
+pebble-firmware    |   191 | __STATIC_INLINE void ARM_MPU_Enable(uint32_t MPU_Control)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2921,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/mpu_armv8.h:143:22: error: redefinition of 'ARM_MPU_Disable'
+pebble-firmware    |   143 | __STATIC_INLINE void ARM_MPU_Disable(void)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1960,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/mpu_armv7.h:204:22: note: previous definition of 'ARM_MPU_Disable' was here
+pebble-firmware    |   204 | __STATIC_INLINE void ARM_MPU_Disable(void)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2921,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/mpu_armv8.h:234:22: error: redefinition of 'ARM_MPU_ClrRegion'
+pebble-firmware    |   234 | __STATIC_INLINE void ARM_MPU_ClrRegion(uint32_t rnr)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1960,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/mpu_armv7.h:218:22: note: previous definition of 'ARM_MPU_ClrRegion' was here
+pebble-firmware    |   218 | __STATIC_INLINE void ARM_MPU_ClrRegion(uint32_t rnr)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2921,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/mpu_armv8.h:255:22: error: conflicting types for 'ARM_MPU_SetRegionEx'
+pebble-firmware    |   255 | __STATIC_INLINE void ARM_MPU_SetRegionEx(MPU_Type* mpu, uint32_t rnr, uint32_t rbar, uint32_t rlar)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1960,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/mpu_armv7.h:239:22: note: previous definition of 'ARM_MPU_SetRegionEx' was here
+pebble-firmware    |   239 | __STATIC_INLINE void ARM_MPU_SetRegionEx(uint32_t rnr, uint32_t rbar, uint32_t rasr)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2921,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/mpu_armv8.h:267:22: error: conflicting types for 'ARM_MPU_SetRegion'
+pebble-firmware    |   267 | __STATIC_INLINE void ARM_MPU_SetRegion(uint32_t rnr, uint32_t rbar, uint32_t rlar)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1960,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/mpu_armv7.h:228:22: note: previous definition of 'ARM_MPU_SetRegion' was here
+pebble-firmware    |   228 | __STATIC_INLINE void ARM_MPU_SetRegion(uint32_t rbar, uint32_t rasr)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2921,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/mpu_armv8.h:289:22: error: redefinition of 'ARM_MPU_OrderedMemcpy'
+pebble-firmware    |   289 | __STATIC_INLINE void ARM_MPU_OrderedMemcpy(volatile uint32_t* dst, const uint32_t* __RESTRICT src, uint32_t len)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1960,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/mpu_armv7.h:251:22: note: previous definition of 'ARM_MPU_OrderedMemcpy' was here
+pebble-firmware    |   251 | __STATIC_INLINE void ARM_MPU_OrderedMemcpy(volatile uint32_t* dst, const uint32_t* __RESTRICT src, uint32_t len)
+pebble-firmware    |       |                      ^~~~~~~~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2921,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/mpu_armv8.h:334:22: error: conflicting types for 'ARM_MPU_Load'
+pebble-firmware    |   334 | __STATIC_INLINE void ARM_MPU_Load(uint32_t rnr, ARM_MPU_Region_t const* table, uint32_t cnt)
+pebble-firmware    |       |                      ^~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1960,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/mpu_armv7.h:264:22: note: previous definition of 'ARM_MPU_Load' was here
+pebble-firmware    |   264 | __STATIC_INLINE void ARM_MPU_Load(ARM_MPU_Region_t const* table, uint32_t cnt)
+pebble-firmware    |       |                      ^~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:2941:26: error: redefinition of 'SCB_GetFPUType'
+pebble-firmware    |  2941 | __STATIC_INLINE uint32_t SCB_GetFPUType(void)
+pebble-firmware    |       |                          ^~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:1981:26: note: previous definition of 'SCB_GetFPUType' was here
+pebble-firmware    |  1981 | __STATIC_INLINE uint32_t SCB_GetFPUType(void)
+pebble-firmware    |       |                          ^~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:3127:26: error: redefinition of 'SysTick_Config'
+pebble-firmware    |  3127 | __STATIC_INLINE uint32_t SysTick_Config(uint32_t ticks)
+pebble-firmware    |       |                          ^~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:2022:26: note: previous definition of 'SysTick_Config' was here
+pebble-firmware    |  2022 | __STATIC_INLINE uint32_t SysTick_Config(uint32_t ticks)
+pebble-firmware    |       |                          ^~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:3199:26: error: redefinition of 'ITM_SendChar'
+pebble-firmware    |  3199 | __STATIC_INLINE uint32_t ITM_SendChar (uint32_t ch)
+pebble-firmware    |       |                          ^~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:2064:26: note: previous definition of 'ITM_SendChar' was here
+pebble-firmware    |  2064 | __STATIC_INLINE uint32_t ITM_SendChar (uint32_t ch)
+pebble-firmware    |       |                          ^~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:3220:25: error: redefinition of 'ITM_ReceiveChar'
+pebble-firmware    |  3220 | __STATIC_INLINE int32_t ITM_ReceiveChar (void)
+pebble-firmware    |       |                         ^~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:2085:25: note: previous definition of 'ITM_ReceiveChar' was here
+pebble-firmware    |  2085 | __STATIC_INLINE int32_t ITM_ReceiveChar (void)
+pebble-firmware    |       |                         ^~~~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:119,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm33.h:3240:25: error: redefinition of 'ITM_CheckChar'
+pebble-firmware    |  3240 | __STATIC_INLINE int32_t ITM_CheckChar (void)
+pebble-firmware    |       |                         ^~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/modules/hal/nordic/nrfx/mdk/nrf52840.h:147,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/mdk/nrf.h:160,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/drivers/nrfx_common.h:39,
+pebble-firmware    |                  from /west/modules/hal/nordic/nrfx/nrfx.h:36,
+pebble-firmware    |                  from /west/zephyr/soc/arm/nordic_nrf/nrf91/soc.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/cmsis.h:17,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu_v8m.h:10,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/cortex_m/mpu/arm_mpu.h:16,
+pebble-firmware    |                  from /west/zephyr/include/arch/arm/aarch32/arch.h:186,
+pebble-firmware    |                  from /west/zephyr/include/arch/cpu.h:19,
+pebble-firmware    |                  from /west/zephyr/include/kernel_includes.h:38,
+pebble-firmware    |                  from /west/zephyr/include/kernel.h:17,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:28,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/modules/hal/cmsis/CMSIS/Core/Include/core_cm4.h:2105:25: note: previous definition of 'ITM_CheckChar' was here
+pebble-firmware    |  2105 | __STATIC_INLINE int32_t ITM_CheckChar (void)
+pebble-firmware    |       |                         ^~~~~~~~~~~~~
+pebble-firmware    | In file included from /west/zephyr/arch/arm/include/kernel_arch_data.h:29,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets_aarch32.c:29,
+pebble-firmware    |                  from /west/zephyr/arch/arm/core/offsets/offsets.c:12:
+pebble-firmware    | /west/zephyr/arch/arm/include/aarch32/cortex_m/exc.h: In function 'z_arm_exc_setup':
+pebble-firmware    | /west/zephyr/arch/arm/include/aarch32/cortex_m/exc.h:102:19: error: 'SecureFault_IRQn' undeclared (first use in this function); did you mean 'UsageFault_IRQn'?
+pebble-firmware    |   102 |  NVIC_SetPriority(SecureFault_IRQn, _EXC_FAULT_PRIO);
+pebble-firmware    |       |                   ^~~~~~~~~~~~~~~~
+pebble-firmware    |       |                   UsageFault_IRQn
+pebble-firmware    | /west/zephyr/arch/arm/include/aarch32/cortex_m/exc.h:102:19: note: each undeclared identifier is reported only once for each function it appears in
+pebble-firmware    | ninja: build stopped: subcommand failed.
+pebble-firmware    | [31/362] Generating include/generated/driver-validation.h
+pebble-firmware    | FAILED: modules/nrf/samples/spm_subimage-prefix/src/spm_subimage-stamp/spm_subimage-build spm/zephyr/zephyr.hex spm/zephyr/zephyr.elf spm/libspmsecureentries.a /west/build/modules/nrf/samples/spm_subimage-prefix/src/spm_subimage-stamp/spm_subimage-build /west/build/spm/zephyr/zephyr.hex /west/build/spm/zephyr/zephyr.elf /west/build/spm/libspmsecureentries.a 
+pebble-firmware    | cd /west/build/spm && /usr/local/bin/cmake --build . --
+pebble-firmware    | ninja: build stopped: subcommand failed.
+pebble-firmware    | FATAL ERROR: command exited with status 1: /usr/local/bin/cmake --build /west/build
+pebble-firmware exited with code 1
