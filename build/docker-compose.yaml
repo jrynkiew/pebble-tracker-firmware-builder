@@ -10,20 +10,12 @@ services:
     environment:
       - LC_ALL=C.UTF-8
       - LANG=C.UTF-8
-      - CONFIG_DOWNLOAD_CLIENT_BUF_SIZE=2048
-      - CONFIG_DOWNLOAD_CLIENT_STACK_SIZE=1024
-      - MODEM_KEY_MGMT_CRED_TYPE_CA_CHAIN=0
-      - MODEM_KEY_MGMT_CRED_TYPE_PRIVATE_CERT=0
-      - FOTA_DOWNLOAD=n
-      - MODEM_KEY_MGMT_CRED_TYPE_PUBLIC_CERT=0
       - ZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb
       - GNUARMEMB_TOOLCHAIN_PATH=/gnuarmemb
-      - CONFIG_CC310_BACKEND=y
-      - SOC_FAMILY_NRF=y
+      - BRANCH=$JRPC_PEBBLE_DIR
     volumes:
-      - "$JRPC_PebbleFirmware/external/:/app/"
-      #- "$JRPC_PebbleFirmware/build/install.sh:/install.sh"
-      - "$JRPC_PebbleFirmware/build/Kconfig:/west/nrfxlib/nrf_security/Kconfig"
-    command: $BUILD $FIRMWARE_PATH
+      - "$JRPC_PEBBLE_DIR/external/:/app/"
+      - "$JRPC_PEBBLE_DIR/build/install.sh:/install.sh"
+    command: /install.sh #$BUILD $FIRMWARE_PATH
     #west build -b thingy91_nrf9160ns /app/pebble-firmware-legacy/nrf/applications/asset_tracker/
     #sleep infinity #

@@ -2,10 +2,6 @@ FROM ubuntu:bionic
 ENV DEBIAN_FRONTEND noninteractive
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-# COPY ./kitware-archive.sh /build/kitware-archive.sh
-
-# RUN /build/kitware-archive.sh
-
 RUN apt update && apt install --no-install-recommends git cmake ninja-build gperf \
     ccache dfu-util device-tree-compiler wget \
     python3-dev python3-pip xz-utils file \
@@ -31,6 +27,7 @@ RUN west init -m https://github.com/nrfconnect/sdk-nrf --mr v1.4.0 && \
     west update
 
 # Install CMake
+WORKDIR /cmake
 RUN wget https://github.com/Kitware/CMake/releases/download/v3.22.2/cmake-3.22.2.tar.gz && \
     tar -zxvf cmake-3.22.2.tar.gz && \
     cd cmake-3.22.2 && \
@@ -39,13 +36,12 @@ RUN wget https://github.com/Kitware/CMake/releases/download/v3.22.2/cmake-3.22.2
     make install
 
 # Export a Zephyr CMake. The Zephyr CMake package ensures that CMake can automatically select a Zephyr to use for building the application.
+WORKDIR /west
 RUN west zephyr-export
 
 RUN wget https://launchpad.net/ubuntu/+source/device-tree-compiler/1.4.7-1/+build/15279267/+files/device-tree-compiler_1.4.7-1_amd64.deb -P /build && \
     apt install /build/device-tree-compiler_1.4.7-1_amd64.deb && \
     rm /build/device-tree-compiler_1.4.7-1_amd64.deb
-
-WORKDIR /west
 
 # CMD [ "west", "build", "-b", "thingy91_nrf9160ns", "/app/pebble-firmware-legacy/nrf/applications/Aries" ]
 # CMD [ "west", "build", "-b", "thingy91_nrf9160ns", "/app/pebble-firmware-legacy/nrf/applications/Aries" ]
