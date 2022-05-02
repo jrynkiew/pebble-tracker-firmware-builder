@@ -8,12 +8,14 @@ cd /app/pebble-firmware-legacy
 # git rm -r --cached .
 # cd ..
 
-pip3 install -r zephyr/scripts/requirements.txt
-pip3 install -r nrf/scripts/requirements.txt
-pip3 install -r bootloader/mcuboot/scripts/requirements.txt
 
-source zephyr/zephyr-env.sh
+
+
 rm -rf build/
 west update
 west zephyr-export
-west build -b iotex_pebble_hw30ns nrf/applications/Aries
+source zephyr/zephyr-env.sh
+pip3 install -r nrf/scripts/requirements.txt
+pip3 install -r bootloader/mcuboot/scripts/requirements.txt
+pip3 install -r zephyr/scripts/requirements.txt
+west build -b iotex_pebble_hw30ns /app/pebble-firmware-legacy/nrf/applications/Aries
