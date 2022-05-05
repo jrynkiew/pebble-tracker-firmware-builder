@@ -20,4 +20,4 @@
 (requires direct access to a working Pebble Tracker)
 
 1. Go to IoTeX docs here - https://docs.iotex.io/verifiable-data/pebble-tracker/firmware-update#4.-install-and-run-pebble-usb-tools
-2. Flash the app_test_update.hex`file onto the Pebble following the instructions in the documentation
+2. Flash the `app_test_update.hex` file onto the Pebble following the instructions in the documentation
