@@ -16,4 +16,7 @@
 
 **Output** ./external/pebble-firmware-legacy/build/zephyr/app_test_update.hex`
 
+# Post Build Instructions
+(requires direct access to a working Pebble Tracker)
 
+Go to IoTeX documentation here https://docs.iotex.io/verifiable-data/pebble-tracker/firmware-update#offline-firmware-upgrade and follow the instructions on flashing your Pebble Tracker with the newly build firmware.
