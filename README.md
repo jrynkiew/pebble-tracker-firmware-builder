@@ -21,3 +21,14 @@
 
 1. Go to IoTeX docs here - https://docs.iotex.io/verifiable-data/pebble-tracker/firmware-update#4.-install-and-run-pebble-usb-tools
 2. Flash the `app_test_update.hex` file onto the Pebble following the instructions in the documentation
+
+
+### Donate[^1].
+
+
+
+[^1]: Donations:
+  BTC: `1LG7rjbc3vUXUkxAQ8RBC2tD7q2yAFwFdK`
+  ETH: `0x4aabba4195d1f9309c81a93cd762b76d3b0a1283`
+  IOTX: `io1098h946aa5us8h4fql6zptv9kjqn7cu9x9uzm0`
+  POKT: `2d7877c7dddf5a8b130e00709fa4d0402863a1b4`
