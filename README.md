@@ -1,13 +1,19 @@
 # Pebble Tracker Firmware Update Build System
+![Banner_optimized](https://user-images.githubusercontent.com/63042547/166878689-1ef9fce4-7996-4b95-89a7-b0f39a439656.png)
 
 
-# First time Build (only tested on Linux Zorin OS):
+# Instructions
+(only tested on Linux)
 
-1. `chmod +x install.sh`
+1. Install Docker
+2. Install Docker-Compose
 
-2. `./install.sh` 
+3. `chmod +x install.sh`
+
+4. `./install.sh
+5. Select which firmware to build
 
 
-.hex output - `./external/pebble-firmware-legacy/build/zephyr/app_test_update.hex`
+**Output** -`./external/pebble-firmware-legacy/build/zephyr/app_test_update.hex`
 
 
