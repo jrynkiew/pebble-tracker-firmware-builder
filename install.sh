@@ -1,8 +1,8 @@
 #!/bin/bash
-# # Environment variables
+# Environment variables
 red=`tput setaf 1`
-# purple=`tput setaf 93`
-# blue=`tput setaf 21`
+purple=`tput setaf 93`
+blue=`tput setaf 21`
 green=`tput setaf 2`
 gold=`tput setaf 214`
 reset=`tput sgr0`
@@ -12,9 +12,6 @@ reset=`tput sgr0`
 git submodule update --init --recursive
 
 cd $JRPC_PEBBLE_DIR/external/pebble-firmware
-
-# rm -rf ./external/pebble-firmware/ncs/nrf/boards/arm/thingy91_nrf9160 && \
-# cp -rv /app/pebble-firmware-legacy/nrf/boards/arm/thingy91_nrf9160 /app/pebble-firmware/ncs/nrf/boards/arm/
 
 read -p "Which ${green}IoTeX${reset} ${gold}Pebble Tracker Firmware${reset} do you want to build?
         ${green}1)${reset}: Aries
@@ -42,17 +39,17 @@ esac)
 
 case $FIRMWARE_SELECTION_GIT in
   aries)
-    FIRMWARE_PATH_DOCKER_INTERNAL="/app/pebble-firmware-legacy/nrf/applications/$FIRMWARE_SELECTION/"
+    FIRMWARE_PATH_DOCKER="/app/pebble-firmware-legacy/nrf/applications/$FIRMWARE_SELECTION/"
     FIRMWARE_PATH="$JRPC_PEBBLE_DIR/external/pebble-firmware/nrf/applications/$FIRMWARE_SELECTION/" 
     git checkout $FIRMWARE_SELECTION_GIT  ;;
 
   main)
-    FIRMWARE_PATH_DOCKER_INTERNAL="/app/pebble-firmware-legacy/nrf/applications/$FIRMWARE_SELECTION/" 
+    FIRMWARE_PATH_DOCKER="/app/pebble-firmware-legacy/nrf/applications/$FIRMWARE_SELECTION/" 
     FIRMWARE_PATH="$JRPC_PEBBLE_DIR/external/pebble-firmware/nrf/applications/$FIRMWARE_SELECTION/"
     git checkout $FIRMWARE_SELECTION_GIT  ;;
 
   riverrock)
-    FIRMWARE_PATH_DOCKER_INTERNAL="/app/pebble-firmware-legacy/nrf/applications/$FIRMWARE_SELECTION/"
+    FIRMWARE_PATH_DOCKER="/app/pebble-firmware-legacy/nrf/applications/$FIRMWARE_SELECTION/"
     FIRMWARE_PATH="$JRPC_PEBBLE_DIR/external/pebble-firmware/nrf/applications/$FIRMWARE_SELECTION/"
     git checkout $FIRMWARE_SELECTION_GIT  ;;
 
@@ -68,16 +65,10 @@ cp -r $FIRMWARE_PATH $JRPC_PEBBLE_DIR/external/pebble-firmware-legacy/nrf/applic
 
 echo "This script will attempt to build the ${green}$FIRMWARE_SELECTION firmware${reset}"
 
-# Getting necessary user input
-read -p "Do you want to perform a first-time installation (${red}F${reset}) or run the application (${green}R${reset})?: " MODE
-MODE_flag=$(case "$MODE" in
-  (F|f)
-    echo "docker-compose -p JRPC-pebble-firmware -f $JRPC_PEBBLE_DIR/build/docker-compose.yaml up --no-deps --build" ;;
-  (R|r)
-    echo "docker-compose -p JRPC-pebble-firmware -f $JRPC_PEBBLE_DIR/build/docker-compose.yaml up" ;;
-esac)
+# Start the container
+docker-compose -p JRPC-pebble-firmware -f $JRPC_PEBBLE_DIR/build/docker-compose.yaml up --no-deps --build
 
-$MODE_flag
+echo "FIRMWARE_PATH_DOCKER=$FIRMWARE_PATH_DOCKER" > $JRPC_PEBBLE_DIR/build/.env
 
 
 
