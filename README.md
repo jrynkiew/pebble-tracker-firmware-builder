@@ -11,9 +11,9 @@
 3. `chmod +x install.sh`
 
 4. `./install.sh
-5. Select which firmware to build
+5. Select which firmware to build (input numeric keys 1, 2 or 3 and press enter)
 
 
-**Output** -`./external/pebble-firmware-legacy/build/zephyr/app_test_update.hex`
+**Output** ./external/pebble-firmware-legacy/build/zephyr/app_test_update.hex`
 
 
