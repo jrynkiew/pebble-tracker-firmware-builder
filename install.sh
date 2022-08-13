@@ -66,9 +66,9 @@ cp -r $FIRMWARE_PATH $JRPC_PEBBLE_DIR/external/pebble-firmware-legacy/nrf/applic
 echo "This script will attempt to build the ${green}$FIRMWARE_SELECTION firmware${reset}"
 
 # Start the container
-docker-compose -p JRPC-pebble-firmware -f $JRPC_PEBBLE_DIR/build/docker-compose.yaml up --no-deps --build
+docker-compose -p JRPC-pebble-firmware -f $JRPC_PEBBLE_DIR/build-scripts/docker-compose.yaml up --no-deps --build
 
-echo "FIRMWARE_PATH_DOCKER=$FIRMWARE_PATH_DOCKER" > $JRPC_PEBBLE_DIR/build/.env
+echo "FIRMWARE_PATH_DOCKER=$FIRMWARE_PATH_DOCKER" > $JRPC_PEBBLE_DIR/build-scripts/.env
 
 
 
