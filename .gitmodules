@@ -1,7 +1,7 @@
 [submodule "external/pebble-firmware"]
 	path = external/pebble-firmware
-	url = https://github.com/iotexproject/pebble-firmware.git
+	url = https://github.com/iotexproject/pebble-apps.git
 	branch = aries
 [submodule "external/pebble-firmware-legacy"]
 	path = external/pebble-firmware-legacy
-	url = https://github.com/iotexproject/pebble-firmware-legacy.git
+	url = https://github.com/jrynkiew/pebble-firmware.git
