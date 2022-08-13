@@ -13,10 +13,10 @@ services:
       - ZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb
       - GNUARMEMB_TOOLCHAIN_PATH=/gnuarmemb
     env_file:
-      - $JRPC_PEBBLE_DIR/build/.env
+      - $JRPC_PEBBLE_DIR/build-scripts/.env
     volumes:
       - "$JRPC_PEBBLE_DIR/external/:/app/"
-      - "$JRPC_PEBBLE_DIR/build/install.sh:/install.sh"
+      - "$JRPC_PEBBLE_DIR/build-scripts/install.sh:/install.sh"
     command: /install.sh 
     #$BUILD $FIRMWARE_PATH
     #west build -b thingy91_nrf9160ns /app/pebble-firmware-legacy/nrf/applications/asset_tracker/
