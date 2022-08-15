@@ -9,12 +9,9 @@ reset=`tput sgr0`
 
 . ./tools/setenv.sh
 
-git submodule update --init --recursive
+#git submodule update --init --recursive
 
 cd $JRPC_PEBBLE_DIR/external/pebble-firmware
-
-# rm -rf ./external/pebble-firmware/ncs/nrf/boards/arm/thingy91_nrf9160 && \
-# cp -rv /app/pebble-firmware-legacy/nrf/boards/arm/thingy91_nrf9160 /app/pebble-firmware/ncs/nrf/boards/arm/
 
 read -p "Which ${green}IoTeX${reset} ${gold}Pebble Tracker Firmware${reset} do you want to build?
         ${green}1)${reset}: Aries
@@ -43,18 +40,18 @@ esac)
 case $FIRMWARE_SELECTION_GIT in
   aries)
     FIRMWARE_PATH_DOCKER_INTERNAL="/app/pebble-firmware-legacy/nrf/applications/$FIRMWARE_SELECTION/"
-    FIRMWARE_PATH="$JRPC_PEBBLE_DIR/external/pebble-firmware/nrf/applications/$FIRMWARE_SELECTION/" 
-    git checkout $FIRMWARE_SELECTION_GIT  ;;
+    FIRMWARE_PATH="$JRPC_PEBBLE_DIR/external/pebble-firmware/nrf/applications/$FIRMWARE_SELECTION/" ;;
+    #git checkout $FIRMWARE_SELECTION_GIT  ;;
 
   main)
     FIRMWARE_PATH_DOCKER_INTERNAL="/app/pebble-firmware-legacy/nrf/applications/$FIRMWARE_SELECTION/" 
-    FIRMWARE_PATH="$JRPC_PEBBLE_DIR/external/pebble-firmware/nrf/applications/$FIRMWARE_SELECTION/"
-    git checkout $FIRMWARE_SELECTION_GIT  ;;
+    FIRMWARE_PATH="$JRPC_PEBBLE_DIR/external/pebble-firmware/nrf/applications/$FIRMWARE_SELECTION/" ;;
+    #git checkout $FIRMWARE_SELECTION_GIT  ;;
 
   riverrock)
     FIRMWARE_PATH_DOCKER_INTERNAL="/app/pebble-firmware-legacy/nrf/applications/$FIRMWARE_SELECTION/"
-    FIRMWARE_PATH="$JRPC_PEBBLE_DIR/external/pebble-firmware/nrf/applications/$FIRMWARE_SELECTION/"
-    git checkout $FIRMWARE_SELECTION_GIT  ;;
+    FIRMWARE_PATH="$JRPC_PEBBLE_DIR/external/pebble-firmware/nrf/applications/$FIRMWARE_SELECTION/" ;;
+    #git checkout $FIRMWARE_SELECTION_GIT  ;;
 
   *)
     echo "${red}Not a valid answer. Terminating${reset}"
@@ -62,7 +59,7 @@ case $FIRMWARE_SELECTION_GIT in
 esac
 
 cd $JRPC_PEBBLE_DIR/external/pebble-firmware-legacy
-git checkout v1.4.0
+#git checkout v1.4.0
 
 cp -r $FIRMWARE_PATH $JRPC_PEBBLE_DIR/external/pebble-firmware-legacy/nrf/applications
 

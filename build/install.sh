@@ -2,16 +2,8 @@
 
 cd /app/pebble-firmware-legacy
 
-# git clone https://github.com/nrfconnect/sdk-zephyr zephyr
-# cd zephyr
-# git reset --hard v2.4.0-ncs1
-# git rm -r --cached .
-# cd ..
-
-
-
-
 rm -rf build/
+rm -rf zephyr/
 west update
 west zephyr-export
 source zephyr/zephyr-env.sh
