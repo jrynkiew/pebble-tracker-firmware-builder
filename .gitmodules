@@ -5,3 +5,5 @@
 [submodule "external/pebble-firmware-legacy"]
 	path = external/pebble-firmware-legacy
 	url = https://github.com/jrynkiew/pebble-firmware-legacy.git
+	branch = new 
+
