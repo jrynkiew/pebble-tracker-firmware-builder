@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  pebble-firmware:
+    container_name: pebble-firmware
+    #image: pebble-firmware:latest
+    build: 
+       context: $JRPC_PEBBLE_DIR
+       dockerfile: Dockerfile
+    environment:
+      - LC_ALL=C.UTF-8
+      - LANG=C.UTF-8
+      - ZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb
+      - ZEPHYR_BASE=/app/pebble-firmware/zephyr
+      - GNUARMEMB_TOOLCHAIN_PATH=/gnuarmemb
+      - BRANCH=$FIRMWARE_PATH_DOCKER_INTERNAL
+    volumes:
+      - "$JRPC_PEBBLE_DIR/dependencies/:/app/"
+      - "$JRPC_PEBBLE_DIR/build/build.sh:/build.sh"
+      - "$JRPC_PEBBLE_DIR/config/.bash_profile:/root/.bash_profile"
+    command: ./build.sh #sleep infinity #/bin/bash
+
+    # /install.sh 
+    #$BUILD $FIRMWARE_PATH
+    #west build -b thingy91_nrf9160ns /app/pebble-firmware-legacy/nrf/applications/asset_tracker/
+    #sleep infinity #
