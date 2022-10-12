@@ -11,25 +11,36 @@ RUN apt install -y --no-install-recommends \
     wget xz-utils file ninja-build \
     make gcc gcc-multilib g++-multilib \
     libssl-dev libsdl2-dev \
-    dfu-util device-tree-compiler git
+    dfu-util git \
+    flex bison
 
 RUN python3 -m venv $VIRTUAL_ENV
 RUN pip3 install --upgrade pip wheel
 RUN pip3 install --upgrade west tk setuptools setuptools-rust intelhex pyelftools docopt click cryptography cbor
 
 # Install CMake
-WORKDIR /cmake
 RUN wget https://github.com/Kitware/CMake/releases/download/v3.22.2/cmake-3.22.2.tar.gz && \
     tar -zxvf cmake-3.22.2.tar.gz && \
-    cd cmake-3.22.2 && \
+    mv cmake-3.22.2 /opt/cmake && \
+    cd /opt/cmake && \
     ./bootstrap && \
     make && \
-    make install
+    make install && \
+    rm /cmake-3.22.2.tar.gz
 
-WORKDIR /
 RUN wget https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2 && \
     tar -jxvf gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2 && \
-    mv gcc-arm-none-eabi-9-2020-q2-update gnuarmemb
+    mv gcc-arm-none-eabi-9-2020-q2-update /opt/gnuarmemb && \
+    rm /gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
+
+RUN wget https://git.kernel.org/pub/scm/utils/dtc/dtc.git/snapshot/dtc-1.6.1.tar.gz && \
+    tar -zxvf dtc-1.6.1.tar.gz && \
+    mv dtc-1.6.1 /opt/dtc-1.6.1 && \
+    cd /opt/dtc-1.6.1 && \
+    make && \
+    make install && \
+    rm /dtc-1.6.1.tar.gz 
+
 
 # RUN west --version
 

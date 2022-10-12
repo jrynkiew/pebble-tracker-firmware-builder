@@ -12,7 +12,7 @@ services:
       - LANG=C.UTF-8
       - ZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb
       - ZEPHYR_BASE=/app/pebble-firmware/zephyr
-      - GNUARMEMB_TOOLCHAIN_PATH=/gnuarmemb
+      - GNUARMEMB_TOOLCHAIN_PATH=/opt/gnuarmemb
       - BRANCH=$FIRMWARE_PATH_DOCKER_INTERNAL
     volumes:
       - "$JRPC_PEBBLE_DIR/dependencies/:/app/"

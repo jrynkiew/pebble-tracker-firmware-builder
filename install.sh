@@ -39,17 +39,17 @@ esac)
 
 case $FIRMWARE_SELECTION_GIT in
   aries)
-    export FIRMWARE_PATH_DOCKER_INTERNAL="/app/pebble-apps/nrf/applications/$FIRMWARE_SELECTION/"
+    export FIRMWARE_PATH_DOCKER_INTERNAL="/app/pebble-firmware/nrf/applications/$FIRMWARE_SELECTION/"
     FIRMWARE_PATH="$JRPC_PEBBLE_DIR/dependencies/pebble-apps/nrf/applications/$FIRMWARE_SELECTION/"
     git checkout $FIRMWARE_SELECTION_GIT  ;;
 
   main)
-    export FIRMWARE_PATH_DOCKER_INTERNAL="/app/pebble-apps/nrf/applications/$FIRMWARE_SELECTION/" 
+    export FIRMWARE_PATH_DOCKER_INTERNAL="/app/pebble-firmware/nrf/applications/$FIRMWARE_SELECTION/" 
     FIRMWARE_PATH="$JRPC_PEBBLE_DIR/dependencies/pebble-apps/nrf/applications/$FIRMWARE_SELECTION/"
     git checkout $FIRMWARE_SELECTION_GIT  ;;
 
   riverrock)
-    export FIRMWARE_PATH_DOCKER_INTERNAL="/app/pebble-apps/nrf/applications/$FIRMWARE_SELECTION/"
+    export FIRMWARE_PATH_DOCKER_INTERNAL="/app/pebble-firmware/nrf/applications/$FIRMWARE_SELECTION/"
     FIRMWARE_PATH="$JRPC_PEBBLE_DIR/dependencies/pebble-apps/nrf/applications/$FIRMWARE_SELECTION/"
     git checkout $FIRMWARE_SELECTION_GIT  ;;
 
