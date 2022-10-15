@@ -9,17 +9,15 @@ reset=`tput sgr0`
 
 . ./tools/setenv.sh
 
-git submodule update --init --recursive
-
-cd $JRPC_PEBBLE_DIR/dependencies/pebble-apps
-
+# Get user input
 read -p "Which ${green}IoTeX${reset} ${gold}Pebble Tracker Firmware${reset} do you want to build?
         ${green}1)${reset}: Aries
         ${green}2)${reset}: Gravel
         ${green}3)${reset}: Riverrock
         " FIRMWARE_SELECTION_CONFIG
 
-FIRMWARE_SELECTION_GIT=$(case "$FIRMWARE_SELECTION_CONFIG" in
+# Set hardocded folder names for Pebble Apps based on git branch selection (These are set in the actual github repositories)
+export PEBBLE_APPS_BRANCH=$(case "$FIRMWARE_SELECTION_CONFIG" in
   (1)    
     echo "aries"    ;;
   (2)    
@@ -28,7 +26,7 @@ FIRMWARE_SELECTION_GIT=$(case "$FIRMWARE_SELECTION_CONFIG" in
     echo "riverrock"  ;;
 esac)
 
-FIRMWARE_SELECTION=$(case "$FIRMWARE_SELECTION_CONFIG" in
+export FIRMWARE_SELECTION=$(case "$FIRMWARE_SELECTION_CONFIG" in
   (1)    
     echo "Aries"    ;;
   (2)    
@@ -37,36 +35,10 @@ FIRMWARE_SELECTION=$(case "$FIRMWARE_SELECTION_CONFIG" in
     echo "Riverrock"  ;;
 esac)
 
-case $FIRMWARE_SELECTION_GIT in
-  aries)
-    export FIRMWARE_PATH_DOCKER_INTERNAL="/app/pebble-firmware/nrf/applications/$FIRMWARE_SELECTION/"
-    FIRMWARE_PATH="$JRPC_PEBBLE_DIR/dependencies/pebble-apps/nrf/applications/$FIRMWARE_SELECTION/"
-    git checkout $FIRMWARE_SELECTION_GIT  ;;
+echo "Building the ${green}$FIRMWARE_SELECTION firmware${reset}"
 
-  main)
-    export FIRMWARE_PATH_DOCKER_INTERNAL="/app/pebble-firmware/nrf/applications/$FIRMWARE_SELECTION/" 
-    FIRMWARE_PATH="$JRPC_PEBBLE_DIR/dependencies/pebble-apps/nrf/applications/$FIRMWARE_SELECTION/"
-    git checkout $FIRMWARE_SELECTION_GIT  ;;
+docker-compose -p JRPC-pebble-firmware -f $JRPC_PEBBLE_DIR/build/docker-compose.yaml build --build-arg FIRMWARE_SELECTION=$FIRMWARE_SELECTION --build-arg PEBBLE_APPS_BRANCH=$PEBBLE_APPS_BRANCH --build-arg PEBBLE_APPS_REPOSITORY=$PEBBLE_APPS_REPOSITORY --build-arg PEBBLE_FIRMWARE_BRANCH=$PEBBLE_FIRMWARE_BRANCH --build-arg PEBBLE_FIRMWARE_REPOSITORY=$PEBBLE_FIRMWARE_REPOSITORY
 
-  riverrock)
-    export FIRMWARE_PATH_DOCKER_INTERNAL="/app/pebble-firmware/nrf/applications/$FIRMWARE_SELECTION/"
-    FIRMWARE_PATH="$JRPC_PEBBLE_DIR/dependencies/pebble-apps/nrf/applications/$FIRMWARE_SELECTION/"
-    git checkout $FIRMWARE_SELECTION_GIT  ;;
-
-  *)
-    echo "${red}Not a valid answer. Terminating${reset}"
-    exit 0 ;;
-esac
-
-cd $JRPC_PEBBLE_DIR/dependencies/pebble-firmware
-git fetch
-git checkout master
-git pull origin master
-
-cp -r $FIRMWARE_PATH $JRPC_PEBBLE_DIR/dependencies/pebble-firmware/nrf/applications
-
-echo "This script will attempt to build the ${green}$FIRMWARE_SELECTION firmware${reset}"
-
-docker-compose -p JRPC-pebble-firmware -f $JRPC_PEBBLE_DIR/build/docker-compose.yaml up --no-deps --build
+docker-compose -p JRPC-pebble-firmware -f $JRPC_PEBBLE_DIR/build/docker-compose.yaml up
 
 

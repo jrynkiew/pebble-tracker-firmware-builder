@@ -1,4 +1,4 @@
-version: '2'
+version: '2.2'
 
 services:
   pebble-firmware:
@@ -13,14 +13,21 @@ services:
       - ZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb
       - ZEPHYR_BASE=/app/pebble-firmware/zephyr
       - GNUARMEMB_TOOLCHAIN_PATH=/opt/gnuarmemb
-      - BRANCH=$FIRMWARE_PATH_DOCKER_INTERNAL
+      - FIRMWARE_SELECTION=$FIRMWARE_SELECTION
+      - TERM=xterm-256color
     volumes:
-      - "$JRPC_PEBBLE_DIR/dependencies/:/app/"
-      - "$JRPC_PEBBLE_DIR/build/build.sh:/build.sh"
-      - "$JRPC_PEBBLE_DIR/config/.bash_profile:/root/.bash_profile"
-    command: ./build.sh #sleep infinity #/bin/bash
+      # Pass your own custom pebble firmeware to the pebble-firmware-builder
+      # <yourdir>/$PEBBLE_APPS_BRANCH:/app/pebble-firmware/nrf/applications/$PEBBLE_APPS_BRANCH
 
-    # /install.sh 
-    #$BUILD $FIRMWARE_PATH
-    #west build -b thingy91_nrf9160ns /app/pebble-firmware-legacy/nrf/applications/asset_tracker/
-    #sleep infinity #
+      # Pass the certificate to sign the firmware
+      - /home/jeremi/Documents/JRPC/Certs/root-ec-p256.pem:/app/pebble-firmware/bootloader/mcuboot/root-ec-p256.pem
+
+      # Pass the initialization script
+      - "$JRPC_PEBBLE_DIR/build/build.sh:/app/build.sh"
+
+      # Output directoryfor generated files
+      - $JRPC_PEBBLE_DIR/generated:/app/pebble-firmware/build/zephyr/
+    ports:
+      # Port on which the http server will be hosted (1337 is the host port, 8000 is the guest port from the Docker container)
+      - 1337:8000
+    command: /app/build.sh #sleep infinity #/bin/bash

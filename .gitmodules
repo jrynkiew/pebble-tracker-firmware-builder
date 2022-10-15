@@ -3,4 +3,4 @@
 	url = https://github.com/iotexproject/pebble-firmware.git
 [submodule "dependencies/pebble-apps"]
 	path = dependencies/pebble-apps
-	url = https://github.com/iotexproject/pebble-apps.git
+	url = https://github.com/jrynkiew/pebble-apps.git
